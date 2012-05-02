@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, BaikuActivity!</string>
+    <string name="app_name">BaiKu</string>
+    
+    <!-- 登录窗体 -->
+    <string name="login_label_username">Email</string>
+    <string name="login_label_password">Password</string>
+    <string name="login_label_button">登 录</string>
+    <string name="login_register_link">没有帐号？ <a href="http://fanfou.com/register">注册</a></string>
+    
+    <!-- 主窗体 -->
+    <string name="show_login">PopupLogin</string>
+    <string name="show_contact">PopupContact</string>
+    <string name="show_about">PopupAbout</string>
+    <string name="show_intent">PopupIntent</string>
+    <string name="show_baiku">PopupBaiku</string>
+    
+    <!-- context menu -->
+    <string name="cmenu_more">更多</string>
+    
+	<!-- 下拉刷新 -->
+	<string name="pull_to_refresh_pull_label">下拉刷新...</string>
+	<string name="pull_to_refresh_release_label">松开刷新...</string>
+	<string name="pull_to_refresh_refreshing_label">读取中...</string>
+	<string name="pull_to_refresh_tap_label">点击刷新...</string>
+</resources>

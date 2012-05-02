@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+	<Button
+    android:id="@+id/show_about"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/show_about" 
+    style = "@style/blue_button" />
+    
+	<Button
+    android:id="@+id/show_login"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/show_about"
+    android:text="@string/show_login" 
+    style = "@style/blue_button" />
+
+    <Button
+    android:id="@+id/show_contact"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/show_about"
+    android:text="@string/show_contact" 
+    style = "@style/blue_button" />
+  
+    <Button
+    android:id="@+id/show_intent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/show_contact"
+    android:text="@string/show_intent" 
+    style = "@style/blue_button" />
+    
+    <Button
+    android:id="@+id/show_baiku"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/show_intent"
+    android:text="@string/show_baiku" 
+    style = "@style/blue_button" />
+    
+</LinearLayout>
