@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/demo_qqlogin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="QQLogin" />
+    <Button
+        android:id="@+id/demo_qqcontactdial"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="QQContactDial" />
+    <Button
+        android:id="@+id/demo_sensormonitor"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="SensorMonitor" />
+    <Button
+        android:id="@+id/demo_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="ViewPager" /> 
+    <Button
+        android:id="@+id/demo_pathmain"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="PathDemo" />
+</LinearLayout>

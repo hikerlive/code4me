@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dial_pad_tip"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_tips_bar" >
+
+    <TextView android:id="@+id/tv_dial_pad_tips"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+		android:layout_weight="1.0"
+		android:padding="10.0dip"
+        android:textAppearance="?android:textAppearanceSmall"
+		android:textColor="@android:color/black"
+		android:text="@string/dial_pad_tips" />
+    
+</LinearLayout>

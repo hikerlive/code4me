@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" >
+	    <ImageButton android:id="@+id/one"
+	        android:background="@drawable/btn_dial_1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_1"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	    <ImageButton android:id="@+id/two"
+	        android:background="@drawable/btn_dial_1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_2"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	    <ImageButton android:id="@+id/three"
+	        android:background="@drawable/btn_dial_1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_3"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" >
+	    <ImageButton android:id="@+id/four"
+	        android:background="@drawable/btn_dial"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_4"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	    <ImageButton android:id="@+id/five"
+	        android:background="@drawable/btn_dial"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_5"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	    <ImageButton android:id="@+id/six"
+	        android:background="@drawable/btn_dial"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_6"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" >
+	    <ImageButton android:id="@+id/seven"
+	        android:background="@drawable/btn_dial"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_7"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	    <ImageButton android:id="@+id/eight"
+	        android:background="@drawable/btn_dial"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_8"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	    <ImageButton android:id="@+id/nine"
+	        android:background="@drawable/btn_dial"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_9"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" >
+	    <ImageButton android:id="@+id/star"
+	        android:background="@drawable/btn_dial"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_star"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	    <ImageButton android:id="@+id/zero"
+	        android:background="@drawable/btn_dial"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_0"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	    <ImageButton android:id="@+id/pound"
+	        android:background="@drawable/btn_dial"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/dial_num_pound"
+	        android:layout_weight="1.0"
+	        android:soundEffectsEnabled="false" />
+	</LinearLayout>
+</LinearLayout>

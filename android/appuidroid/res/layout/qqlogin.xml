@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	<LinearLayout android:id="@+d/LinearLayout01"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1.0"
+		android:background="@drawable/default_bg"
+		android:orientation="vertical">
+		<RelativeLayout android:id="@+d/RelativeLayout02"
+			android:background="@drawable/login_back"
+			android:paddingTop="21.0px"
+			android:paddingBottom="10.0px"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="15.0px"
+			android:layout_marginTop="62.0px"
+			android:layout_marginRight="15.0px">
+			<ImageView android:id="@+id/faceImg"
+				android:background="@drawable/login_head"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			<EditText android:id="@+id/login_edit_account"
+			    android:background="@drawable/qq_edit_login"
+			    android:paddingLeft="45.0sp"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginLeft="5.0dip"
+			    android:layout_marginRight="5.0dip"
+			    android:layout_marginTop="5.0dip"
+			    android:layout_marginBottom="5.0px"
+			    android:layout_toRightOf="@+id/faceImg"
+			    android:layout_alignParentTop="true"
+			    android:saveEnabled="true"
+			    android:maxLength="10"
+			    android:inputType="number" 
+			    android:hint="@string/strInputAccHint" />
+			<TextView android:id="@+id/TextView01"
+			    android:gravity="center_vertical"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="15.0sp"
+			    android:layout_alignTop="@+id/login_edit_account"
+			    android:layout_alignLeft="@+id/login_edit_account"
+			    android:layout_alignBottom="@+id/login_edit_account"
+			    android:paddingLeft="7.0sp"
+			    android:textSize="16.0dip"
+			    android:textColor="#ff3f3f3f"
+			    android:text="@string/strAccInputLabel" />
+			<ImageButton android:id="@+id/ImageButton02"
+			    android:background="@drawable/more_select"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="1.0dip"
+			    android:layout_alignTop="@+id/login_edit_account"
+			    android:layout_alignRight="@+id/login_edit_account"
+			    android:layout_alignBottom="@+id/login_edit_account" />
+			<EditText android:id="@+id/login_edit_pwd"
+			    android:background="@drawable/qq_edit_login"
+			    android:paddingLeft="45.0sp"
+			    android:saveEnabled="true"
+			    android:maxLength="16"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_below="@+id/login_edit_account"
+			    android:layout_marginRight="1.0dip"
+			    android:layout_alignLeft="@+id/login_edit_account"
+			    android:layout_alignRight="@+id/login_edit_account"
+			    android:inputType="textPassword" />
+			<TextView android:id="@+id/TextView02"
+			    android:textSize="16.0dip"
+			    android:textColor="#ff3f3f3f"
+			    android:gravity="center_vertical"
+			    android:paddingLeft="7.0sp"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignTop="@+id/login_edit_pwd"
+			    android:layout_alignRight="@+id/TextView01"
+			    android:layout_alignBottom="@+id/login_edit_pwd"
+			    android:text="@string/strPswInputLabel" />
+			<CheckBox android:id="@+id/login_cb_savepwd"
+			    android:paddingLeft="40.0px"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignBaseline="@+id/login_btn_login"
+			    android:checked="true"
+			    android:button="@drawable/qq_btn_check"
+			    android:textSize="16.0dip"
+			    android:textColor="#ff222222"
+			    android:text="@string/opt_remember" />
+			<Button android:id="@+id/login_btn_login"
+			    android:layout_width="200.0px"
+			    android:layout_height="50.0px"
+			    android:layout_marginTop="17.0px"
+			    android:layout_marginRight="10.0dip"
+			    android:layout_below="@+id/TextView02"
+			    android:layout_alignParentRight="true"
+			    android:text="@string/login" />
+		</RelativeLayout>
+		
+		<TableLayout android:id="@+id/TableLayout01"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="20.0px"
+		    android:layout_marginRight="20.0px"
+		    android:stretchColumns="1">
+			<TableRow >
+			    <CheckBox
+			        android:id="@+id/login_cb_visible"
+			        style="@style/MyCheckBox"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/opt_hideLogin"
+			        android:textColor="#7fffffff" />
+			    <CheckBox
+			        android:id="@+id/login_cb_openvibra"
+			        style="@style/MyCheckBox"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right"
+			        android:text="@string/opt_openVibras"
+			        android:textColor="#7fffffff" />
+			</TableRow>
+		    <TableRow>
+		        <CheckBox android:id="@+id/login_cb_receivegroupmsg"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/opt_acceptGroupMsg"
+		            android:textColor="#7fffffff"
+		            style="@style/MyCheckBox" />
+		        <CheckBox android:id="@+id/login_cb_quite"
+		            android:layout_gravity="right"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/opt_slient"
+		            android:textColor="#7fffffff"
+		            style="@style/MyCheckBox" />
+		    </TableRow>
+		</TableLayout>
+	</LinearLayout>
+
+    <RelativeLayout android:id="@+id/RelativeLayout01"
+    	android:layout_width="fill_parent"
+    	android:layout_height="44.0dip"
+    	android:background="@drawable/bottom">
+    	<ImageButton android:id="@+id/login_option"
+    		android:background="@drawable/option"
+    		android:clickable="true"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:layout_marginLeft="13.0dip"
+    		android:layout_marginTop="2.0dip"
+    		android:layout_centerVertical="true" />
+    </RelativeLayout>
+</LinearLayout>

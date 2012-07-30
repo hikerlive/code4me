@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, AppuidroidActivity!</string>
+    <string name="app_name">Appuidroid</string>
+    
+    <!-- qq登录窗体 -->
+    <string name="opt_hideLogin">隐身登录</string>
+    <string name="opt_openVibras">开启振动</string>
+    <string name="opt_acceptGroupMsg">接收群消息</string>
+    <string name="opt_slient">静音登录</string>
+    <string name="strAccInputLabel">账号</string>
+    <string name="strInputAccHint">输入账号</string>
+    <string name="strPswInputLabel">密码</string>
+    <string name="opt_remember">记住密码</string>
+    <string name="login">登录</string>
+    
+    <!-- qqcontact拨号盘 -->
+    <string name="empty_tips_callog"></string>
+    <string name="dial_pad_tips"></string>
+        
+</resources>
