@@ -70,7 +70,7 @@ public class ViewPagerActivity extends Activity{
 			}
 		});	
 		
-		mViewPager = (ViewPager)findViewById(R.id.viewpager);
+		mViewPager = (ViewPager)findViewById(R.id.vPager);
 		views = new ArrayList<View>();
 		LayoutInflater inflater = getLayoutInflater();
 		views.add(inflater.inflate(R.layout.page_one, null));

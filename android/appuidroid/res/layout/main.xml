@@ -25,8 +25,18 @@
         android:layout_height="wrap_content"
         android:text="ViewPager" /> 
     <Button
+        android:id="@+id/demo_scrolltab"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="ScrollTabAndSwitchView" /> 
+    <Button
         android:id="@+id/demo_pathmain"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="PathDemo" />
+    <Button
+        android:id="@+id/demo_wechatguide"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="WeChatGuide" />
 </LinearLayout>

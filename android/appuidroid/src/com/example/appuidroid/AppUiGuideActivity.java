@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 public class AppUiGuideActivity extends Activity {
     /** Called when the activity is first created. */
@@ -13,49 +12,60 @@ public class AppUiGuideActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        Button btn1 = (Button)findViewById(R.id.demo_qqlogin);
-        btn1.setOnClickListener(new View.OnClickListener() {
+        onClick(R.id.demo_qqlogin, new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent("com.example.appuidroid.QQLOGIN");
 				startActivity(intent);
 			}
 		});
-        
-        Button btn2 = (Button)findViewById(R.id.demo_qqcontactdial);
-        btn2.setOnClickListener(new View.OnClickListener() {
+        onClick(R.id.demo_qqcontactdial, new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
         		Intent intent = new Intent("com.example.appuidroid.QQCONTACTDIAL");
         		startActivity(intent);
         	}
         });
-        
-        Button btn3 = (Button)findViewById(R.id.demo_sensormonitor);
-        btn3.setOnClickListener(new View.OnClickListener() {
+        onClick(R.id.demo_sensormonitor, new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
         		Intent intent = new Intent("com.example.appuidroid.SENSORDEMO");
         		startActivity(intent);
         	}
         });    
-        
-        Button btn4 = (Button)findViewById(R.id.demo_viewpager);
-        btn4.setOnClickListener(new View.OnClickListener() {
+        onClick(R.id.demo_viewpager, new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
         		Intent intent = new Intent("com.example.appuidroid.VIEWPAGER");
         		startActivity(intent);
         	}
         });
-        
-        Button btn5 = (Button)findViewById(R.id.demo_pathmain);
-        btn5.setOnClickListener(new View.OnClickListener() {
+        onClick(R.id.demo_scrolltab, new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		Intent intent = new Intent(AppUiGuideActivity.this, ScrollTabActivity.class);
+        		startActivity(intent);
+        	}
+        });
+        onClick(R.id.demo_pathmain, new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
         		Intent intent = new Intent("com.example.appuidroid.PATHMAIN");
         		startActivity(intent);
         	}
         });
+        onClick(R.id.demo_wechatguide, new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(AppUiGuideActivity.this, WeChatGuideActivity.class);
+				startActivity(intent);
+			}
+		});
+    }
+    
+    private View onClick(int resId, View.OnClickListener listener) {
+    	View view = (View) findViewById(resId);
+    	view.setOnClickListener(listener);
+    	return view;
     }
 }
