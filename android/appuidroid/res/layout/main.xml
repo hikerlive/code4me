@@ -3,40 +3,98 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
-    <Button
-        android:id="@+id/demo_qqlogin"
+    
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="QQLogin" />
-    <Button
-        android:id="@+id/demo_qqcontactdial"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="QQContactDial" />
-    <Button
-        android:id="@+id/demo_sensormonitor"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="SensorMonitor" />
-    <Button
-        android:id="@+id/demo_viewpager"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="ViewPager" /> 
-    <Button
-        android:id="@+id/demo_scrolltab"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="ScrollTabAndSwitchView" /> 
-    <Button
-        android:id="@+id/demo_pathmain"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="PathDemo" />
-    <Button
-        android:id="@+id/demo_wechatguide"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="WeChatGuide" />
+        android:layout_height="fill_parent" >
+        
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+            
+		    <Button
+		        android:id="@+id/demo_qqlogin"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="QQLogin" />
+		    <Button
+		        android:id="@+id/demo_qqcontactdial"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="QQContactDial" />
+		    <Button
+		        android:id="@+id/demo_sensormonitor"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="SensorMonitor" />
+		    <Button
+		        android:id="@+id/demo_viewpager"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="ViewPager" /> 
+		    <Button
+		        android:id="@+id/demo_scrolltab"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="ScrollTabAndSwitchView" /> 
+		    <Button
+		        android:id="@+id/demo_pathmain"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="PathDemo" />
+		    <Button
+		        android:id="@+id/demo_wechatguide"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="WeChatGuide" />
+		    <Button
+		        android:id="@+id/demo_contactlist"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="ContactList" />
+		    <Button
+		        android:id="@+id/demo_custom_panel"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="PanelActivity" />
+		    <Button
+		        android:id="@+id/demo_custom_draw"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="DrawActivity" />
+		    <Button
+		        android:id="@+id/demo_canvas"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="2D OpenGL canvas demo" /> 
+	        <Button
+	            android:id="@+id/demo_rotate_image"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:text="RotateImage" />
+	        <Button
+	            android:id="@+id/demo_download_image"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:text="DownloadImage" />
+	        <Button
+	            android:id="@+id/demo_sms_thread"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:text="DemoSMSThread" />
+	        <Button
+	            android:id="@+id/demo_async_http"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:text="DemoAsynHttpRequest" />
+	        <Button
+	            android:id="@+id/demo_jni_caller"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:text="DemoJniCaller" />
+	    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

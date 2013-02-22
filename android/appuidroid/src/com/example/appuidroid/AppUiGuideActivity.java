@@ -1,11 +1,14 @@
 package com.example.appuidroid;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class AppUiGuideActivity extends Activity {
+import com.example.appuidroid.asynchttp.AsyncHttpActivity;
+import com.example.appuidroid.graphics.DrawActivity;
+import com.example.appuidroid.graphics.PanelActivity;
+
+public class AppUiGuideActivity extends BaseActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -15,28 +18,28 @@ public class AppUiGuideActivity extends Activity {
         onClick(R.id.demo_qqlogin, new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent("com.example.appuidroid.QQLOGIN");
+				Intent intent = new Intent(AppUiGuideActivity.this, QQLoginActivity.class);
 				startActivity(intent);
 			}
 		});
         onClick(R.id.demo_qqcontactdial, new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
-        		Intent intent = new Intent("com.example.appuidroid.QQCONTACTDIAL");
+        		Intent intent = new Intent(AppUiGuideActivity.this, QQContactActivity.class);
         		startActivity(intent);
         	}
         });
         onClick(R.id.demo_sensormonitor, new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
-        		Intent intent = new Intent("com.example.appuidroid.SENSORDEMO");
+        		Intent intent = new Intent(AppUiGuideActivity.this, SensorMonitorActivity.class);
         		startActivity(intent);
         	}
         });    
         onClick(R.id.demo_viewpager, new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
-        		Intent intent = new Intent("com.example.appuidroid.VIEWPAGER");
+        		Intent intent = new Intent(AppUiGuideActivity.this, ViewPagerActivity.class);
         		startActivity(intent);
         	}
         });
@@ -50,7 +53,7 @@ public class AppUiGuideActivity extends Activity {
         onClick(R.id.demo_pathmain, new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
-        		Intent intent = new Intent("com.example.appuidroid.PATHMAIN");
+        		Intent intent = new Intent(AppUiGuideActivity.this, PathMainActivity.class);
         		startActivity(intent);
         	}
         });
@@ -61,11 +64,63 @@ public class AppUiGuideActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-    }
-    
-    private View onClick(int resId, View.OnClickListener listener) {
-    	View view = (View) findViewById(resId);
-    	view.setOnClickListener(listener);
-    	return view;
+        onClick(R.id.demo_contactlist, new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(AppUiGuideActivity.this, LetterListActivity.class);
+				startActivity(intent);
+			}
+		});
+        onClick(R.id.demo_custom_panel, new View.OnClickListener() {
+        	@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(AppUiGuideActivity.this, PanelActivity.class);
+				startActivity(intent);
+			}
+        });
+        onClick(R.id.demo_custom_draw, new View.OnClickListener() {
+        	@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(AppUiGuideActivity.this, DrawActivity.class);
+				startActivity(intent);
+			}
+        });
+        onClick(R.id.demo_canvas, new View.OnClickListener() {
+        	@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(AppUiGuideActivity.this, CanvasDrawActivity.class);
+				startActivity(intent);
+			}
+        });
+        onClick(R.id.demo_rotate_image, new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onNavigate(RotateImageActivity.class);
+			}
+		});
+        onClick(R.id.demo_download_image, new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onNavigate(DownloadImageActivity.class);
+			}
+		});
+        onClick(R.id.demo_sms_thread, new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onNavigate(SMSThreadActivity.class);
+			}
+		});
+        onClick(R.id.demo_async_http, new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onNavigate(AsyncHttpActivity.class);
+			}
+		});
+        onClick(R.id.demo_jni_caller, new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onNavigate(JniCallerActivity.class);
+			}
+		});
     }
 }
