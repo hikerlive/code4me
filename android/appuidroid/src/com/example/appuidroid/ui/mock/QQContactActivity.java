@@ -1,8 +1,11 @@
-package com.example.appuidroid;
+package com.example.appuidroid.ui.mock;
 
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.example.appuidroid.R;
+import com.example.appuidroid.R.id;
+import com.example.appuidroid.R.layout;
 import com.tencent.qqphonebook.views.DialPadView;
 
 public class QQContactActivity extends Activity {

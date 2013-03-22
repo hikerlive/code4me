@@ -1,4 +1,4 @@
-package com.example.appuidroid;
+package com.example.appuidroid.ui.mock;
 
 import java.util.ArrayList;
 
@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+
+import com.example.appuidroid.R;
 
 public class ScrollTabActivity extends Activity implements OnCheckedChangeListener{
 	private RadioGroup mRadioGroup;

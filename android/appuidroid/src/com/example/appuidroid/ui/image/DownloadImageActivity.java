@@ -1,4 +1,4 @@
-package com.example.appuidroid;
+package com.example.appuidroid.ui.image;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +20,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.appuidroid.R;
+
+/**
+ * 演示说明
+ * 	1.演示下载远程图片到本地
+ * 
+ */
 public class DownloadImageActivity extends Activity {
 	String imageUrl = "http://www.baidu.com/img/baidu_sylogo1.gif";
 	String baikuIconUrl = "http://wap.baiku.cn/icon.action?reqcode=icon&userid=4b96cc0599b1c94ba49e9cc2c8cec944";

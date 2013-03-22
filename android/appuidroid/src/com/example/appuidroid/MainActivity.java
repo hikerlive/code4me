@@ -38,8 +38,8 @@ public class MainActivity extends ListActivity{
 	private List getData(String prefix) {
 		List<Map> myData = new ArrayList<Map>();
 		
-		Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-		mainIntent.addCategory(Intent.CATEGORY_SAMPLE_CODE);
+		Intent mainIntent = new Intent("com.example.appuidroid.SAMPLE", null);
+		mainIntent.addCategory("com.example.appuidroid.SAMPLE_CODE");
 		
 		PackageManager pm = getPackageManager();
 		List<ResolveInfo> list = pm.queryIntentActivities(mainIntent, 0);

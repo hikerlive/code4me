@@ -5,8 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="8" />
-	<uses-permission android:name="android.permission.WAKE_LOCK" />
-	<uses-permission android:name="android.permission.DEVICE_POWER" />
+    
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
@@ -17,6 +16,112 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>   
+        </activity>
+        <!-- ndk -->
+        <activity
+            android:name=".ui.ndk.AreaCodeActivity"
+            android:label="ndk/AreaCode" >
+             <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>            
+        </activity>
+        <activity
+            android:name=".ui.ndk.PinYinActivity"
+            android:label="ndk/PinYin">
+             <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>              
+		</activity>
+		<activity
+		    android:name=".ui.ndk.JniCallerActivity"
+		    android:label="ndk/Jni Caller">
+             <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>		    
+		</activity>
+        
+        <!-- mock -->
+        <activity
+            android:name=".ui.mock.QQLoginActivity"
+            android:label="mock/QQ Login" >
+             <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.mock.QQContactActivity"
+            android:label="mock/QQ Contact" >
+             <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>            
+        </activity>
+		<activity
+            android:name=".ui.mock.FanfouListActivity"
+            android:label="mock/Fanfou List" >
+             <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>            
+        </activity>
+		<activity
+            android:name=".ui.mock.ScrollTabActivity"
+            android:label="mock/Scroll Tab" >
+             <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>            
+        </activity>
+                
+        <!-- widgets -->
+        <activity 
+            android:name=".ui.widgets.MaskedTextActivity"
+            android:label="widgets/MaskedTextView">
+            <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>
+        </activity>
+        
+        <!-- images -->
+        <activity
+            android:name=".ui.image.RotateImageActivity"
+            android:label="image/Rotate Image">
+            <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>            
+        </activity>
+        <activity
+            android:name=".ui.image.DownloadImageActivity"
+            android:label="image/Download Remote Image">
+            <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>            
+        </activity>
+        
+        <!-- canvas -->
+        <activity
+            android:name=".ui.canvas.HelloWorldActivity"
+            android:label="canvas/Hello World">
+            <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>            
+        </activity>
+        <activity
+            android:name=".ui.canvas.CanvasDrawActivity"
+            android:label="canvas/Base Draw">
+            <intent-filter>
+                <action android:name="com.example.appuidroid.SAMPLE" />
+                <category android:name="com.example.appuidroid.SAMPLE_CODE" />                
+            </intent-filter>
+        </activity>
+        
     </application>
 </manifest>

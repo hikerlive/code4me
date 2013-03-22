@@ -1,4 +1,4 @@
-package com.example.appuidroid;
+package com.example.appuidroid.ui.mock;
 
 import android.app.Activity;
 import android.os.Bundle;

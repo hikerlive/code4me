@@ -1,4 +1,4 @@
-package com.example.appuidroid;
+package com.example.appuidroid.ui.image;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+
+import com.example.appuidroid.R;
 
 /**
  * 演示旋转动画的使用方法
