@@ -1,0 +1,14 @@
+#comiple hello.cpp
+
+CC = g++
+CFLAGS = -Wall -g -c 
+LDFLAGS = -lm
+
+hello: hello.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+hello.o: hello.cpp
+	$(CC) $(CFLAGS) -o $@ $<
+
+clean:
+	rm *.o 
