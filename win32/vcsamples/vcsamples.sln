@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hz2pyv3", "hz2pyv3\hz2pyv3.vcxproj", "{822DDD17-6B46-48F4-A7D1-F0E2B197C6AF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sortkey", "sortkey\sortkey.vcxproj", "{3902B80D-2EB8-4F9F-8CE4-9076B3989569}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "areacode", "areacode\areacode.vcxproj", "{7F6E7F41-D255-4B5B-B467-DA039DC5ED22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{822DDD17-6B46-48F4-A7D1-F0E2B197C6AF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{822DDD17-6B46-48F4-A7D1-F0E2B197C6AF}.Debug|Win32.Build.0 = Debug|Win32
+		{822DDD17-6B46-48F4-A7D1-F0E2B197C6AF}.Release|Win32.ActiveCfg = Release|Win32
+		{822DDD17-6B46-48F4-A7D1-F0E2B197C6AF}.Release|Win32.Build.0 = Release|Win32
+		{3902B80D-2EB8-4F9F-8CE4-9076B3989569}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3902B80D-2EB8-4F9F-8CE4-9076B3989569}.Debug|Win32.Build.0 = Debug|Win32
+		{3902B80D-2EB8-4F9F-8CE4-9076B3989569}.Release|Win32.ActiveCfg = Release|Win32
+		{3902B80D-2EB8-4F9F-8CE4-9076B3989569}.Release|Win32.Build.0 = Release|Win32
+		{7F6E7F41-D255-4B5B-B467-DA039DC5ED22}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7F6E7F41-D255-4B5B-B467-DA039DC5ED22}.Debug|Win32.Build.0 = Debug|Win32
+		{7F6E7F41-D255-4B5B-B467-DA039DC5ED22}.Release|Win32.ActiveCfg = Release|Win32
+		{7F6E7F41-D255-4B5B-B467-DA039DC5ED22}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
