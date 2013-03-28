@@ -1,0 +1,39 @@
+# compile simpledll application here
+#
+
+Import('env')
+
+local_env = env.Clone()
+local_env.Append(
+	LIBS=[
+		'msvcrt.lib','msvcrtd.lib',
+		],
+		
+	CPPDEFINES=[
+		'SIMPLEDLL_EXPORTS',
+		'_WINDLL',
+		],
+	
+	LINKFLAGS=[
+		#'/NODEFAULTLIB',
+		#'/ENTRY:DllMain',
+		#'/MERGE:.rdata=.text',
+		#'/BASE:0x18000000',
+		],		
+)
+
+target_name='simple_dll'
+inputs=[
+	'stdafx.cpp',
+	'dllmain.cpp',
+	'simpledll.cpp',
+	'simpledll.def',
+]
+
+simple_dll = local_env.ComponentLibrary(
+	lib_name=target_name,
+	source=inputs,
+	COMPONENT_STATIC=False
+	)
+
+local_env.Replicate('$STAGING_DIR', 'simple_dll.dll')

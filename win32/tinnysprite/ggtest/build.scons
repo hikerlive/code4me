@@ -1,0 +1,40 @@
+# Compile for ggtest application
+#
+
+# Bring in the environment to use for this component.
+Import('env')
+
+env.BuildSConscript('simpledll')
+env.BuildSConscript('simplewin')
+env.BuildSConscript('regex')
+
+local_env = env.Clone()
+local_env.FilterOut(LINKFLAGS = ['/SUBSYSTEM:WINDOWS'])
+local_env['LINKFLAGS'] += ['/SUBSYSTEM:CONSOLE']
+
+local_env.Append(
+	LIBS = [
+			('libcmt.lib', 'libcmtd.lib')[local_env.Bit('debug')],
+			('libcpmt.lib', 'libcpmtd.lib')[local_env.Bit('debug')],
+		],
+	CPPDEFINES = [
+		'_CRT_SECURE_NO_WARNINGS'
+		],
+	)
+
+target_name = 'ggtest'
+
+# The list of source files [header will be detected automaticly]
+inputs = [
+	'ggtest.cc',
+	'strtest.cc'
+	]
+
+# Build an executable from these inputs.
+# Keep the node referring to the result.
+exe = local_env.ComponentProgram(target_name, inputs)
+
+# Copy the executable to the artifacts directory
+# scons-out/<variant>/artifacts
+# env.Replicate('$ARTIFACTS_DIR', exe)
+

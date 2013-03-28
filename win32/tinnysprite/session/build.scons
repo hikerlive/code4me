@@ -1,0 +1,34 @@
+# compile session domain application here
+#
+#
+
+Import('env')
+
+local_env = env.Clone()
+
+local_env.Append(
+	CCFLAGS = [
+		#'/wd4231',
+		],
+
+	CPPPATH = [
+		'$MAIN_DIR/include/data',
+		'$MAIN_DIR/include/session'
+		],
+	)
+
+target_name = 'session'
+inputs = [
+	'stdafx.cpp',
+	'logger.cpp',
+	'ISessionDomainClient.cpp',
+	'DataConverter.cpp',
+	'BusinessStub.cpp',
+	'AsyncCallExecutor.cpp',
+	'MessagePumpStation.cpp',
+]
+
+local_env.ComponentLibrary(
+	lib_name=target_name,
+	source=inputs
+	)

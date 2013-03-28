@@ -1,0 +1,69 @@
+# compile sharesprite application here
+#
+# 
+
+Import('env')
+
+local_env = env.Clone()
+#local_env.FilterOut(LINKFLAGS = ['/SUBSYSTEM:CONSOLE'])
+#local_env['LINKFLAGS'] += ['/SUBSYSTEM:WINDOWS']
+
+local_env.Append(
+	CCFLAGS = [
+		'/MD',
+		],
+		
+	CPPDEFINES = [
+		'_AFXDLL',
+		],
+		
+	LIBS = [
+		('atls.lib', 'atlsd.lib')[local_env.Bit('debug')],
+		('mfc100u.lib', 'mfc100ud.lib')[local_env.Bit('debug')],
+		('mfcs100u.lib', 'mfcs100ud.lib')[local_env.Bit('debug')],
+		('msvcrt.lib', 'msvcrtd.lib')[local_env.Bit('debug')],
+		('libcmt.lib', 'libcmtd.lib')[local_env.Bit('debug')],
+		],
+		
+	LINKFLAGS = [
+		'/DYNAMICBASE',
+		'/NXCOMPAT',
+		'/INCREMENTAL',
+
+		# error LNK2019: unresolved external symbol _WinMain@16 referenced in function ___tmainCRTStartup
+		# http://topic.csdn.net/t/20040617/22/3101931.html
+		'/ENTRY:wWinMainCRTStartup'		
+		],
+	)
+
+print '___LINKFLAGS:' + local_env['LINKFLAGS'] 
+print '___CCFLAGS:' + local_env['CCFLAGS']
+print local_env['CPPDEFINES']
+
+#if local_env.Bit(LINKFLAGS=['/SUBSYSTEM:WINDOWS']):
+#	print 'LINKFLAGS exist here.'
+
+# The target name of sharesprite application
+target_name = 'ShareSprite'
+
+# The list of sharesprite's source file
+# The header files benn detected automaticlly.
+inputs = [
+	'stdafx.cpp',
+	'MainFrm.cpp',
+	'TinnySprite.cpp',
+	'TinnySpriteDoc.cpp',
+	'TinnySpriteView.cpp',
+	]
+
+inputs += local_env.RES(
+	target='TinnySprite.res',
+	source='TinnySprite.rc',
+	)
+
+# Compile sharesprite source files here
+local_env.ComponentProgram(
+	target_name, 
+	inputs
+	)
+

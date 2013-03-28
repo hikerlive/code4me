@@ -1,0 +1,46 @@
+# The main build scons file.
+# ==============================================================
+
+import os
+
+
+# VC2003/VC71 is 1310
+# VC2005/VC80 is 1400
+# VC2008/VC90 is 1500
+# VC2010/VC10 is 1600
+_msvc_ver = 1500
+
+# Set up version info
+execfile('VERSION')
+
+# Window is the only environment we build for, so create a specialized base
+# environment for windows.
+win_env = Environment()
+
+# Make sure we use the vista SDK
+win_env['PLATFORM_SDK_DIR'] = '$PLATFORM_SDK_VISTA_6_0_DIR'
+
+win_env.Tool('atlmfc_vc80')
+
+# Declare various boolean states
+# DeclareBit('msvs','Building Visual Studio solution files')
+# DeclareBit('all','Building all projects')
+# DeclareBit('min','Building minimal set of projects')
+
+# Build minimal set of libs if --min is on command line
+win_env.SetBitFromOption('min', False)
+
+# Build all libs if --all is on command line
+win_env.SetBitFromOption('all', False)
+
+# Build msvs projects file if --msvs is on command line
+win_env.SetBitFromOption('msvs', False)
+
+if win_env.Bit('all'):
+	print 'use --all command line.'
+
+if win_env.Bit('min'):
+	print 'use --min command line'
+
+if win_env.Bit('msvs'):
+	print 'use --msvs command line'

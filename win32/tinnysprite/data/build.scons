@@ -1,0 +1,32 @@
+# compile data domain client app here
+#
+#
+
+Import('env')
+
+local_env = env.Clone()
+
+local_env.Append(
+	CPPPATH = [
+	'$MAIN_DIR/include/data',
+	]
+)
+
+print local_env['CPPPATH']
+
+target_name = 'ssdatadomain'
+inputs = [
+	'gen-cpp/nettyrpc.pb.cc',
+	'gen-cpp/ssdatadomain.pb.cc',
+	'SSCommon.cpp',
+	'SSDataDomainSvcSyncStub.cpp',
+	'SSLogModule.cpp',
+	'SSRpcChannel.cpp',
+	'SSRpcChannelProxy.cpp',
+	'SSRpcController.cpp',
+]
+
+local_env.ComponentLibrary(
+	lib_name=target_name, 
+	source=inputs
+	)

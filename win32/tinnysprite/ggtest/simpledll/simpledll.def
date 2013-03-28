@@ -1,0 +1,4 @@
+EXPORTS
+	CreateInstance	@1
+	DestoryInstance @2
+	swap			@3

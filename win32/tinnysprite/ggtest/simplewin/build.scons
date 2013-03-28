@@ -1,0 +1,29 @@
+# compile wintest application with winmain entrypoint here.
+#
+#
+
+Import('env')
+
+local_env = env.Clone()
+#local_env.FilterOut(CPPDEFINES=['WIN32_LEAN_AND_MEAN'])
+
+local_env.Append(
+	LIBS = [
+		'$LIB_DIR/simple_dll.lib',
+		('msvcrt.lib', 'msvcrtd.lib')[local_env.Bit('debug')],
+		],
+	)
+
+target_name = 'ggwintest'
+inputs = [
+	'stdafx.cpp',
+	'wintest.cpp',
+]
+
+inputs += local_env.RES(
+	target='wintest.res',
+	source='wintest.rc'
+	)
+
+local_env.ComponentProgram(target_name, inputs)
+

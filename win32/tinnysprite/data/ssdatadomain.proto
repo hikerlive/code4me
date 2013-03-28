@@ -1,0 +1,678 @@
+package SSDataDomain;
+option java_package = "com.channelsoft.ss";
+option java_outer_classname = "SSDataDomain";
+
+// 帐号信息
+message SSAccount {
+	required string userid = 1;
+	required string password = 2;
+	required string email = 3;
+
+	optional bytes binary = 100; // 扩展字段，可以放任何东西
+}
+
+enum SSGender {
+	UNKNOWN = 0; // 未知
+	MALE = 1; // 男
+	FEMAIL = 2; // 女
+}
+
+// 个人信息，可以把除userid外其他信息都放到binary字段中
+message SSProfile {
+	required string userid = 1;
+
+	optional string nickname = 2;
+	optional int32 age = 3;
+	optional SSGender gender = 4;
+	optional bytes icon = 5;
+	optional string icon_name = 6 [default = "default.jpg"];
+	//optional string phone_number = 7; //联系电话
+	//optional string email = 8; // 联系EMAIL
+	optional string introduction = 9; // 自我介绍
+
+	optional bytes binary = 100; // 扩展字段，可以放任何东西
+}
+
+// 联系人，可以把除contactid外其他信息都放到binary字段中
+message SSContact {
+	required string contactid = 1;
+
+	optional string email = 2;
+	optional string userid = 3;
+	optional string alias_nickname = 4; //备注名称
+
+	optional bytes binary = 100; // 扩展字段，可以放任何东西
+}
+
+// 联系人扩展，只在GetContactEx函数是返回此结构
+// 此结构合并了Profile、Contact、Following里的信息
+message SSContactEx {
+	required string contactid = 1;
+
+	optional int32 is_member = 2; // 是否是系统用户
+	optional int32 is_following = 3; // 是否关注
+
+	// 下面这些字段来自SSContact
+	optional string email = 4;
+	optional string userid = 5;
+	optional string alias_nickname = 6; //备注名称
+	
+	// 下面这些字段来自SSProfile
+	optional string nickname = 7;
+	optional string remark = 8;
+	optional SSGender gender = 9;
+	optional int32 age = 10;
+    optional string icon_name = 11;
+    optional string introduction = 12;
+}
+
+// 组，可以把除groupid外其他信息都放到binary字段中
+message SSGroup {
+	required string groupid = 1;
+	optional string name = 2; // 组名
+	optional bool system = 3; // 是系统组还是用户自定义组
+	
+	optional bytes binary = 100; // 扩展字段，可以放任何东西
+}
+
+// 组的成员
+message SSMember {
+	required string groupid = 1;
+	repeated string members = 2; // 组包含的成员，联系人id的列表
+}
+
+// 可以把所有信息都放到binary字段中
+message SSClientState {
+	optional int64 last_send_time = 1; // 客户端最后发送消息的时间
+	optional string last_recieved_message = 2; // 客户端最后收到收件箱消息的ID
+	optional int64 last_fetch_time = 3; // 客户端最后获取收件箱的时间
+	optional int32 last_seq_number = 4; // 客户端公开分享时最后使用的sequence号
+	optional int64 last_logout_time = 5; // 客户端最后退出的时间
+	optional string last_client_identifier = 6; // 客户端上次登录时的客户端标识
+	
+	optional string sc_last_user_time = 7; 				//用户更改个人信息最新时间
+	optional string sc_last_group_time = 8;				//用户更改组信息最新时间
+	optional string sc_last_contact_time = 9;			//用户更改联系人最新时间
+	optional string sc_last_member_time = 10;			//用户更改组成员最新时间
+	optional string sc_last_follow_time = 11;			//关注更改最新时间
+	optional string sc_last_send_time = 12;				//分享最新时间
+	optional string sc_last_recv_time = 13;				//收到分享最新时间
+	optional string sc_last_favo_time = 14;				//收藏最新时间
+	
+	optional bytes binary = 100; // 扩展字段，可以放任何东西
+}
+
+message SSMessageState {
+	required string userid = 1; // 关注者的id
+	required int32 seq_number = 2; // 上一次接收该关注者的公开分享消息的sequence号
+}
+
+// 会话持久信息
+message SSSessionInfo {
+	required string userid = 1;
+
+	optional SSClientState client_state= 2;
+	repeated SSMessageState message_state = 3;
+}
+
+enum SSBOX {
+	PUBBOX = 0;	// 公开分享的发布箱
+	OUTBOX = 1;	// 指定分享的发件箱
+	INBOX = 2;	// 指定分享的收件箱
+	FAVBOX = 3;	// 收藏夹
+}
+
+// 内容类型
+enum SSContentType {
+	NORMAL = 0; // 普通内容
+	COMMAND = 1; // 内容为命令
+}
+
+// 消息
+message SSMessage {
+	optional string msgid = 1; // 发送时msgid不填写
+	
+	optional int32 seq_number = 3;
+	required int64 timestamp = 4;
+	required string sender = 5;
+	repeated string recievers = 6;
+
+	optional string root_msgid = 7; // 转载时根消息的id
+	optional string parent_msgid = 8; // 转载时父消息的id
+	required string subject = 9; // 消息主题，网页为标题，一句话则全部放在这里
+	required SSContentType content_type = 10 [default = NORMAL];
+	optional bytes content = 11; // 消息内容
+}
+
+///////////////////////////////////////////////////////////////////////////////
+enum ServiceCode {
+	SC_OK = 0;
+	SC_NO_SUCH_OBJECT = 1; // 对象不存在
+	SC_METHOD_NOT_IMPLEMENT = 2; // 方法未实现
+	SC_INTERNAL_ERROR = 3; // 服务内部错误，一般指服务内部调用时发生异常
+}
+
+message ServiceResult {
+	required ServiceCode code = 1;
+	optional string message = 2;
+}
+
+// 创建帐号
+message CreateAccountRequest {
+	required string userid = 1;
+	required string password = 2;
+	required string email = 3;
+	required string nickname = 4;
+}
+message CreateAccountResponse {
+	required ServiceResult result = 1;
+}
+
+// 获取帐号
+message GetAccountRequest {
+	required string userid = 1;
+}
+message GetAccountResponse {
+	required ServiceResult result = 1;
+	optional SSAccount account = 2;
+}
+
+// 修改密码
+message ChangePasswordRequest {
+	required string userid = 1;
+	required string new_password = 2;
+}
+message ChangePasswordResponse {
+	required ServiceResult result = 1;
+}
+
+// 用户是否存在
+message UserExistRequest {
+    repeated string userid_list = 1;
+}
+message UserExistResponse {
+    required ServiceResult result = 1;
+    repeated string exist_userid_list = 2;
+}
+
+// 持久化个人设置
+message SetProfileRequest {
+	required string userid = 1;
+	required SSProfile profile = 2;
+}
+message SetProfileResponse {
+	required ServiceResult result = 1;
+}
+
+// 获取个人设置
+message GetProfileRequest {
+	repeated string userid_list = 1;
+	optional int32 flag = 2 [default = 2]; // 这个字段表示返回的profile信息里包含哪些字段
+		// 0表示只获取头像信息；1，表示获取除icon之外的其他信息；2，表示获取profile的所有信息；默认为获取所有信息。
+}
+message GetProfileResponse {
+	required ServiceResult result = 1;
+	repeated SSProfile profile_list = 2;
+}
+
+// 关注
+message FollowRequest {
+	required string follower_userid = 1;
+	repeated string following_userid_list = 2;
+}
+message FollowResponse {
+	required ServiceResult result = 1;
+}
+
+// 取消关注
+message CancelFollowRequest {
+	required string follower_userid = 1;
+	repeated string following_userid_list = 2;
+}
+message CancelFollowResponse {
+	required ServiceResult result = 1;
+}
+
+// 获取关注者
+message GetFollowingRequest {
+	required string userid = 1;
+}
+message GetFollowingResponse {
+	required ServiceResult result = 1;
+	repeated string following_userid_list = 2;
+}
+
+// 获取跟随者数量
+message GetFollowerCountRequest {
+	required string userid = 1;
+}
+message GetFollowerCountResponse {
+	required ServiceResult result = 1;
+	optional int32 count = 2;
+}
+
+// 获取跟随者
+message GetFollowerRequest {
+	required string userid = 1;
+	optional string cursor_id = 2;
+	optional int32 count = 3 [default = 100];
+}
+message GetFollowerResponse {
+	required ServiceResult result = 1;
+	repeated string follower_userid_list = 2;
+	optional bool eol = 3 [default = false];
+}
+
+// 邀请
+message InviteRequest {
+	required string inviter_userid = 1;
+	repeated string inviting_userid_list = 2;
+}
+message InviteResponse {
+	required ServiceResult result = 1;
+}
+
+// 获取邀请过的人
+message GetInvitingRequest {
+	required string userid = 1;
+}
+message GetInvitingResponse {
+	required ServiceResult result = 1;
+	repeated string inviting_userid_list = 2;
+}
+
+// 获取邀请者
+message GetInviterRequest {
+	required string userid = 1;
+}
+message GetInviterResponse {
+	required ServiceResult result = 1;
+	repeated string inviter_userid_list = 2;
+}
+
+// 持久会话信息
+message SetSessionInfoRequest {
+	required string userid = 1;
+	required SSSessionInfo session_info = 2;
+}
+message SetSessionInfoResponse {
+	required ServiceResult result = 1;
+}
+
+// 获取会话信息
+message GetSessionInfoRequest {
+	required string userid = 1;
+}
+message GetSessionInfoResponse {
+	required ServiceResult result = 1;
+	optional SSSessionInfo session_info = 2;
+}
+
+// 添加消息
+//message AddMessageRequest {
+//	required SSMessage msg = 1;
+//}
+//message AddMessageResponse {
+//	required ServiceResult result = 1;
+//	required string msgid = 2;
+//}
+
+// 删除消息
+//message RemoveMessageRequest {
+//	required string msgid = 1;
+//}
+//message RemoveMessageResponse {
+//	required ServiceResult result = 1;
+//}
+
+// 获取消息
+message GetMessageRequest {
+	required string userid = 1;
+	required SSBOX source_box = 2; // 指定从公开分享里、发件箱、收件箱、还是收藏夹中获取
+	optional string cursor_id = 3;  // 作为光标的消息ID，用于在排序集合中准确定位，返回结果不包含cursor_id的消息
+	optional int32 count = 4 [default = 100]; 
+									// 返回消息的最大数量，区分正负，正代表距cursor更早些时候的消息，负代表距cursor更晚些时候的消息
+}
+
+message GetMessageResponse {
+	required ServiceResult result = 1;
+	repeated SSMessage msg_list = 2;
+	optional bool eol = 3 [default = false]; // 是否到达末尾
+}
+
+// 通过时间或序号获取消息
+message GetMessageByTimestampRequest {
+	//
+	// 参数说明：
+	//   count值必须大于0。
+	//   返回结果总是倒序，从start_timestamp[不包含]到end_timestamp[包含]。
+	// 例如：
+	//   start_timestamp = 1, end_timestamp = 10, 返回结果10,9,8,7,6,5,4,3,2
+	//   start_timestamp = 10, end_timestamp = 1, 返回结果9,8,7,6,5,4,3,2,1
+	//
+	required string userid = 1;
+	required SSBOX source_box = 2;
+	optional int64 start_timestamp = 3; // 如果source_box为PUBBOX，该字段解释成序号；否则解释成时间。
+	optional int64 end_timestamp = 4; // 如果source_box为PUBBOX，该字段解释成序号；否则解释成时间。
+	optional int32 count = 5 [default = 100];
+}
+
+message GetMessageByTimestampResponse {
+	required ServiceResult result = 1;
+	repeated SSMessage msg_list = 2;
+}
+
+// 公开分享
+message SendPublicMessageRequest {
+	required SSMessage msg = 1;
+}
+message SendPublicMessageResponse {
+	required ServiceResult result = 1;
+	required string msgid = 2;
+}
+
+// 指定分享
+message SendMessageRequest {
+	required SSMessage msg = 1;
+}
+message SendMessageResponse {
+	required ServiceResult result = 1;
+	required string msgid = 2;
+}
+
+// 收藏
+message AddFavoriteMessageRequest {
+	required SSMessage msg = 1;
+}
+message AddFavoriteMessageResponse {
+	required ServiceResult result = 1;
+	required string msgid = 2;
+}
+
+// 添加或修改联系人
+message AddContactRequest {
+	required string userid = 1;
+	repeated SSContact contact_list = 2;
+}
+message AddContactResponse {
+	required ServiceResult result = 1;
+}
+
+// 删除联系人
+message RemoveContactRequest {
+	required string userid = 1;
+	repeated string contactid_list = 2;
+}
+message RemoveContactResponse {
+	required ServiceResult result = 1;
+}
+
+// 获取所有联系人
+message GetContactRequest {
+	required string userid = 1;
+}
+message GetContactResponse {
+	required ServiceResult result = 1;
+	repeated SSContact contact_list = 2;
+}
+
+// 添加或修改组
+message AddGroupRequest {
+	required string userid = 1;
+	repeated SSGroup group_list = 2;
+}
+message AddGroupResponse {
+	required ServiceResult result = 1;
+}
+
+// 删除组
+message RemoveGroupRequest {
+	required string userid = 1;
+	repeated string groupid_list = 2;
+}
+message RemoveGroupResponse {
+	required ServiceResult result = 1;
+}
+
+// 获取所有组
+message GetGroupRequest {
+	required string userid = 1;
+}
+message GetGroupResponse {
+	required ServiceResult result = 1;
+	repeated SSGroup group_list = 2;
+}
+
+// 添加组成员
+message AddMemberRequest {
+	required string userid = 1;
+	repeated SSMember member_list = 2; 
+}
+message AddMemberResponse {
+	required ServiceResult result = 1;
+}
+
+// 删除组成员
+message RemoveMemberRequest {
+	required string userid = 1;
+	repeated SSMember member_list = 2; 
+}
+message RemoveMemberResponse {
+	required ServiceResult result = 1;
+}
+
+// 获取组成员
+message GetMemberRequest {
+	required string userid = 1;
+}
+message GetMemberResponse {
+	required ServiceResult result = 1;
+	repeated SSMember member_list = 2;
+}
+
+message QueryAndUpdateRequest {
+	required string key = 1;
+	optional bytes update_value = 2;
+	optional bool is_update = 3 [default = false];
+	optional int32 consistency_level = 4;
+}
+message QueryAndUpdateResponse {
+	required ServiceResult result = 1;
+	optional bytes value = 2;
+}
+
+message QueryAndDeleteRequest {
+	required string key = 1;
+}
+message QueryAndDeleteResponse {
+	required ServiceResult result = 1;
+	optional bytes value = 2;
+}
+
+// 添加逻辑节点订阅信息
+message AddLogicNodeSubscribeInfoRequest {
+	required string userid = 1;
+	repeated string logic_node_list = 2;
+}
+message AddLogicNodeSubscribeInfoResponse {
+	required ServiceResult result = 1;
+}
+
+// 删除逻辑节点订阅信息
+message RemoveLogicNodeSubscribeInfoRequest {
+	required string userid = 1;
+	repeated string logic_node_list = 2;
+}
+message RemoveLogicNodeSubscribeInfoResponse {
+	required ServiceResult result = 1;
+}
+
+// 获取逻辑节点订阅信息
+message GetLogicNodeSubscribeInfoRequest {
+	required string userid = 1;
+}
+message GetLogicNodeSubscribeInfoResponse {
+	required ServiceResult result = 1;
+	repeated string logic_node_list = 2;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+message GetFollowerWithProfileRequest {
+	required string userid = 1;
+	optional string cursor_id = 2;
+	optional int32 count = 3 [default = 100];
+	optional bool exclude_icon = 4 [default = true]; // true表示不包含头像信息， false表示包含头像信息
+}
+message GetFollowerWithProfileResponse {
+	required ServiceResult result = 1;
+	repeated SSProfile follower_list = 2;
+	optional bool eol = 3 [default = false];
+}
+message GetFollowingWithProfileRequest {
+	required string userid = 1;
+	optional bool exclude_icon = 2 [default = true]; // true表示不包含头像信息， false表示包含头像信息
+}
+message GetFollowingWithProfileResponse {
+	required ServiceResult result = 1;
+	repeated SSProfile following_list = 2;
+}
+
+message GetContactExRequest {
+	required string userid = 1;
+}
+message GetContactExResponse {
+	required ServiceResult result = 1;
+	repeated SSContactEx contact_ex_list = 2;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+service SSDataDomainSvc {
+	/**
+	 * 帐号接口
+	 */
+
+	// 创建帐号
+	rpc CreateAccount(CreateAccountRequest) returns(CreateAccountResponse);
+	// 获取帐号信息
+	rpc GetAccount(GetAccountRequest) returns(GetAccountResponse);
+	// 修改密码
+	rpc ChangePassword(ChangePasswordRequest) returns(ChangePasswordResponse);
+    // 用户是否存在
+    rpc UserExist(UserExistRequest) returns(UserExistResponse);
+
+	/**
+	 * 个人设置接口
+	 */
+
+	// 持久化个人设置
+	rpc SetProfile(SetProfileRequest) returns(SetProfileResponse);
+	// 获取个人设置
+	rpc GetProfile(GetProfileRequest) returns(GetProfileResponse);
+	// 获取头像
+	//rpc GetIcon(GetIconRequest) returns(GetIconResponse);
+	
+	/**
+	 * 关系接口
+	 */
+
+	// 关注
+	rpc Follow(FollowRequest) returns(FollowResponse);
+	// 取消关注
+	rpc CancelFollow(CancelFollowRequest) returns(CancelFollowResponse);
+	// 获取关注者
+	rpc GetFollowing(GetFollowingRequest) returns(GetFollowingResponse);
+	// 获取朋友
+	//rpc GetFriend(GetFriendRequest) returns(GetFriendResponse);
+	// 获取跟随者数量，这个值并不是一个精确值，任何依赖精确值的业务逻辑都不应该使用它
+	rpc GetFollowerCount(GetFollowerCountRequest) returns(GetFollowerCountResponse);
+	// 获取跟随者
+	rpc GetFollower(GetFollowerRequest) returns(GetFollowerResponse);
+	// 邀请
+	rpc Invite(InviteRequest) returns(InviteResponse);
+	// 获取邀请过的人
+	rpc GetInviting(GetInvitingRequest) returns(GetInvitingResponse);
+	// 获取邀请者
+	rpc GetInviter(GetInviterRequest) returns(GetInviterResponse);
+
+	/**
+	 * 会话持久接口
+	 */
+
+	// 持久会话信息
+	rpc SetSessionInfo(SetSessionInfoRequest) returns(SetSessionInfoResponse);
+	// 获取会话信息
+	rpc GetSessionInfo(GetSessionInfoRequest) returns(GetSessionInfoResponse);
+
+	/**
+	 * 消息接口
+	 */
+
+	// 添加消息，仅仅把消息保存，不处理消息的归属关系 [未实现]
+	//rpc AddMessage(AddMessageRequest) returns(AddMessageResponse);
+	// 删除消息，根据消息id删除消息，不处理消息的归属关系 [未实现]
+	//rpc RemoveMessage(RemoveMessageRequest) returns(RemoveMessageResponse);
+	// 获取消息
+	rpc GetMessage(GetMessageRequest) returns(GetMessageResponse);
+	// 通过时间或序号获取消息
+	rpc GetMessageByTimestamp(GetMessageByTimestampRequest) returns(GetMessageByTimestampResponse);
+
+	// 公开分享，将消息保存到PUBBOX
+	rpc SendPublicMessage(SendPublicMessageRequest) returns(SendPublicMessageResponse);
+	// 指定分享，将消息保存到发送者的OUTBOX和接收者的INBOX
+	rpc SendMessage(SendMessageRequest) returns(SendMessageResponse);
+	// 收藏，将消息保存到FAVBOX
+	rpc AddFavoriteMessage(AddFavoriteMessageRequest) returns(AddFavoriteMessageResponse);
+
+	/**
+	 * 联系人接口
+	 */
+
+	// 添加或修改联系人
+	rpc AddContact(AddContactRequest) returns(AddContactResponse);
+	// 删除联系人，应该先把联系人移出所有的组再调用此方法
+	rpc RemoveContact(RemoveContactRequest) returns(RemoveContactResponse);
+	// 获取所有联系人
+	rpc GetContact(GetContactRequest) returns(GetContactResponse);
+	// 添加或修改组
+	rpc AddGroup(AddGroupRequest) returns(AddGroupResponse);
+	// 删除组
+	rpc RemoveGroup(RemoveGroupRequest) returns(RemoveGroupResponse);
+	// 获取所有组
+	rpc GetGroup(GetGroupRequest) returns(GetGroupResponse);
+	// 添加组成员
+	rpc AddMember(AddMemberRequest) returns(AddMemberResponse);
+	// 删除组成员
+	rpc RemoveMember(RemoveMemberRequest) returns(RemoveMemberResponse);
+	// 获取所有组成员
+	rpc GetMember(GetMemberRequest) returns(GetMemberResponse);
+
+	/**
+	 * 新增接口
+	 */
+	//若key存在，则返回该key对应的value，并根据isUpdate进行更新
+	//若key不存在，则返回新的value，并一定更新
+	rpc QueryAndUpdate(QueryAndUpdateRequest) returns(QueryAndUpdateResponse);
+
+	//若key存在，则返回该key对应的value，并删除该条数据
+	//若key不存在，则返回null
+	rpc QueryAndDelete(QueryAndDeleteRequest) returns(QueryAndDeleteResponse);
+
+	// 添加逻辑节点订阅信息
+	rpc AddLogicNodeSubscribeInfo(AddLogicNodeSubscribeInfoRequest) returns(AddLogicNodeSubscribeInfoResponse);
+	// 删除逻辑节点订阅信息
+	rpc RemoveLogicNodeSubscribeInfo(RemoveLogicNodeSubscribeInfoRequest) returns(RemoveLogicNodeSubscribeInfoResponse);
+	// 获取逻辑节点订阅信息
+	rpc GetLogicNodeSubscribeInfo(GetLogicNodeSubscribeInfoRequest) returns(GetLogicNodeSubscribeInfoResponse);
+
+	/**
+	 * 复合或拆分接口
+	 */
+	rpc GetFollowingWithProfile(GetFollowingWithProfileRequest) returns(GetFollowingWithProfileResponse);
+	rpc GetFollowerWithProfile(GetFollowerWithProfileRequest) returns(GetFollowerWithProfileResponse);
+
+	//
+	// 此接口除了返回Contact的信息外，还合并Profile、Following信息，并且检查联系人是否为系统用户
+	//
+	rpc GetContactEx(GetContactExRequest) returns(GetContactExResponse);
+}

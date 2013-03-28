@@ -1,0 +1,182 @@
+# /usr/bin/python2.4
+#
+# Create a base environment to describe what is common between platform: 
+# base_env = Environment()
+
+# base_env.Tool('component_setup')
+# base_env.Append(
+# All inclueds are relative to the main project directory:
+#	CPPPATH = ['$MAIN_DIR'],
+# The list of componets common to all platform
+# BUILD_SCONSCRIPTS = ['base']
+#	)
+
+# ------------------------------------------------------------------------
+
+import os
+
+win_env = Environment()
+
+win_env.Tool('component_setup')
+win_env.Tool('target_platform_windows')
+win_env.Tool('atlmfc_vc80')
+win_env.Tool('component_targets_msvs')
+
+win_env.Append(
+	# Add an extra window specific flag
+	CCFLAGS = [
+		'/nologo',
+		'/Zc:forScope',
+		'/EHsc',
+		'/WX-',
+		],
+
+	# Link in some window libraries
+	LIBS = [
+		'advapi32',
+		'gdi32.lib',
+		'user32',
+		'kernel32',
+		'winspool.lib',
+		'comdlg32.lib',
+		'comctl32.lib',
+		'shlwapi.lib',
+		'uuid.lib',
+		'ole32.lib',
+		'oleaut32.lib',
+		'oledlg.lib',
+		'gdiplus.lib',
+		'OLDNAMES',
+		],
+	
+	# All includes are relative to the main project directory.
+	CPPPATH = [
+		'$MAIN_DIR',
+		'$MAIN_DIR/..',
+		'$MAIN_DIR/third_party',
+		],
+
+	# Defines for windows environment.
+	CPPDEFINES = [
+		'WIN32', '_WINDOWS',
+		'UNICODE', '_UNICODE',
+		#'WIN32_LEAN_AND_MEAN',
+
+		# See these C_DEFINES when AppVer=6.0
+		# (see win32.mak in platform SDK)
+		'WINVER=0x0601',
+		'_WIN32_WINNT=0x0601',
+		'_WIN32_IE=0x0800',
+		],
+	
+	# Common linker flags.
+	LINKFLAGS = [
+		'/SUBSYSTEM:WINDOWS',
+		'/MAP',
+		'/NODEFAULTLIB',
+		#'/MACHINE:X86',
+		#'/RELEASE',
+		#'/nologo',
+		],
+		
+  # Shared library specific linker flags.
+  SHLINKFLAGS = [
+    #'/nologo',
+    #'/SUBSYSTEM:WINDOWS',
+    #'/MACHINE:x86',
+    ],
+
+	# Resource compiler flags.
+	RCFLAGS = [
+		'/l 1033', # /l == default language id
+		],
+		
+	# Add an extra windows specific component(ggtest\build.scons)
+	BUILD_SCONSCRIPTS = [
+		'ggtest',
+		'client',
+		'data',
+		'session',
+		],
+	)
+
+# Remove this value because it conficts with a #define
+# in shlwapi.h in vista SDK
+win_env.FilterOut(CPPDEFINES = ['OS_WINDOWS=OS_WINDOWS'])
+
+# Make sure pyhon.exe can be located.
+win_env.AppendENVPath('PATH', os.environ['OMAHA_PYTHON_DIR'])
+
+# ------------------------------------------------------------------------
+
+# Create the leaf debug windows environment
+win_dbg_env = win_env.Clone(
+	# Give this buil a name and a description.
+	BUILD_TYPE = 'dbg-win',
+	BUILD_TYPE_DESCRIPTION = 'Windows debug build',
+	)	
+
+# Use the common debug settings
+win_dbg_env.Tool("target_debug")
+win_dbg_env.Append(
+	BUILD_GROUPS = ['default'],
+	CCFLAGS = [
+		'/RTC1',
+		'/Od',
+		'/MTd',
+		],
+	CPPDEFINES = [
+		'_DEBUG',
+		'DEBUG',
+		],
+	)
+
+# ------------------------------------------------------------------------
+
+# Create the leaf optimized windows environment
+win_opt_env = win_env.Clone(
+	# Give the build a name and a description.
+	BUILD_TYPE = 'opt-win',
+	BUILD_TYPE_DESCRIPTION = 'Windows optimized build',
+	)
+win_opt_env.Append(
+	CCFLAGS = [
+		'O1',	# Optimize for small size
+		'GS',
+		'FD',
+		'GL',
+		'MT',	# Global optimization goes with link flag 'LTCG'
+		],
+	CPPDEFINES = [
+		'NDEBUG',
+		],
+	LINKFLAGS = [
+		'/incremental:no',
+		'opt:ref',
+		'opt:icf=32',
+		'opt:nowin98',
+		'LTCG',	# Link - time code generation goes with cl flag '/GL'
+		],
+	)
+
+# Use the common optimized settings
+win_opt_env.Tool('target_optimized')
+
+# ------------------------------------------------------------------------
+
+# Build the variants listed above	.
+# This step will call each of the SConscripts(build.scons) listed.
+# once for each variant currently being built.
+# BuildComponents(
+#	[win_dbg_env, win_opt_env]
+#	)
+BuildEnvironments(
+	[win_dbg_env, win_opt_env]
+	)
+
+
+
+
+
+
+

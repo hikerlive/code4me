@@ -1,0 +1,9 @@
+# _*_ python _*_
+
+# update these manually - don't autogenerate, autoincrement, etc.
+# REMEMBER TO INCREMENT BUILD BY TOW! BUILD SHOULD ALWAYS BE ODD!
+# 1.0.2.0
+version_major = 1	# 1-65535
+version_minor = 0	# 0-65535
+version_build = 2	# 1-65535
+version_patch = 0	# 0-65535
