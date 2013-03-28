@@ -1,0 +1,7 @@
+D:\Plugins\netstart\CSharpWinApp\bin\Debug\CSharpWinApp.exe
+D:\Plugins\netstart\CSharpWinApp\bin\Debug\CSharpWinApp.pdb
+D:\Plugins\netstart\CSharpWinApp\obj\Debug\ResolveAssemblyReference.cache
+D:\Plugins\netstart\CSharpWinApp\obj\Debug\CSharpWinApp.Properties.Resources.resources
+D:\Plugins\netstart\CSharpWinApp\obj\Debug\CSharpWinApp.csproj.GenerateResource.Cache
+D:\Plugins\netstart\CSharpWinApp\obj\Debug\CSharpWinApp.exe
+D:\Plugins\netstart\CSharpWinApp\obj\Debug\CSharpWinApp.pdb

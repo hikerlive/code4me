@@ -1,0 +1,5 @@
+D:\Plugins\netstart\JSharpWinApp\bin\Debug\JSharpWinApp.exe
+D:\Plugins\netstart\JSharpWinApp\bin\Debug\JSharpWinApp.pdb
+D:\Plugins\netstart\JSharpWinApp\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Plugins\netstart\JSharpWinApp\obj\x86\Debug\JSharpWinApp.exe
+D:\Plugins\netstart\JSharpWinApp\obj\x86\Debug\JSharpWinApp.pdb

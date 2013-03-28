@@ -1,0 +1,7 @@
+这是一个ActiveX Form的演示例子
+
+将窗体封装成ActiveX控件的形式,通过WEB部署方式加以再现.
+  (1)InspectorImpl.h/.cpp是主窗体.
+
+  (2)发布的说明请参照C++ Builder 5.0开发人员手册中关于
+  <<ActiveX 控件>>一节中在网络上发布ActiveX控件.

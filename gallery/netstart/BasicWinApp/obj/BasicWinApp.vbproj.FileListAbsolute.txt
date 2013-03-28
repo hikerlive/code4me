@@ -1,0 +1,9 @@
+D:\Plugins\netstart\BasicWinApp\bin\Debug\BasicWinApp.exe
+D:\Plugins\netstart\BasicWinApp\bin\Debug\BasicWinApp.pdb
+D:\Plugins\netstart\BasicWinApp\bin\Debug\BasicWinApp.xml
+D:\Plugins\netstart\BasicWinApp\obj\Debug\ResolveAssemblyReference.cache
+D:\Plugins\netstart\BasicWinApp\obj\Debug\BasicWinApp.Resources.resources
+D:\Plugins\netstart\BasicWinApp\obj\Debug\BasicWinApp.vbproj.GenerateResource.Cache
+D:\Plugins\netstart\BasicWinApp\obj\Debug\BasicWinApp.exe
+D:\Plugins\netstart\BasicWinApp\obj\Debug\BasicWinApp.xml
+D:\Plugins\netstart\BasicWinApp\obj\Debug\BasicWinApp.pdb

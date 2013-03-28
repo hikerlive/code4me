@@ -1,0 +1,36 @@
+﻿import System.Reflection.*;
+import System.Runtime.CompilerServices.*;
+import System.Runtime.InteropServices.*;
+
+//
+// 有关程序集的常规信息通过下列属性集
+// 控制。更改这些属性值可修改
+// 与程序集关联的信息。
+//
+
+/** @assembly AssemblyTitle("JSharpWinApp") */
+/** @assembly AssemblyDescription("") */
+/** @assembly AssemblyCompany("HHDF") */
+/** @assembly AssemblyProduct("JSharpWinApp") */
+/** @assembly AssemblyCopyright("Copyright © HHDF 2010") */
+/** @assembly AssemblyTrademark("") */
+/** @assembly AssemblyCulture("") */
+
+
+// ComVisible 属性控制是否可以
+// 从 COM 对此程序集内的单个类型/成员或所有类型进行访问。若要
+// 从 COM 访问此程序集中的类型或成员，请将该类型或成员的 ComVisible 属性
+// 设置为 true。
+/** @assembly ComVisible(false) */
+
+
+//
+// 程序集的版本信息由下面四个值组成:
+//
+//      主版本
+//      次版本 
+//      内部版本号
+//      修订号
+//
+
+/** @assembly AssemblyVersion("1.0.0.0") */
