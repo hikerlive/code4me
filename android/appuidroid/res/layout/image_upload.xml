@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <Button
+        android:id="@+id/photo_pick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择照片">
+    </Button>
+    
+    <TextView
+        android:id="@+id/photo_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择的照片是:/mnt/sdcard/helloworld.jpg" />
+    
+    <TextView
+        android:id="@+id/photo_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="照片描述:" />
+    
+    <EditText
+        android:id="@+id/photo_desc_edit"
+        android:layout_width="300dip"
+        android:layout_height="wrap_content" />
+    
+    <Button
+        android:id="@+id/photo_upload"
+        android:layout_width="100dip"
+        android:layout_height="wrap_content"
+        android:text="上传" />
+        
+</LinearLayout>
